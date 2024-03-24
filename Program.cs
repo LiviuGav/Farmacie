@@ -83,6 +83,7 @@ class Farmacie
             Console.WriteLine("2. Stergere");
 
             int optiune;
+
             if (!int.TryParse(Console.ReadLine(), out optiune))
             {
                 Console.WriteLine("Optiune invalida. Va rugam sa selectati din nou.");
