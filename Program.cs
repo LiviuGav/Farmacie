@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 class Farmacie
 {
-    static List<Medicament> medicamente = new List<Medicament>();
+    static List<Medicament> medicamente = new List<Medicament>(); //salvarea datelor într-un vector de obiecte
 
     static void Main(string[] args)
     {
@@ -49,7 +49,7 @@ class Farmacie
         }
     }
 
-    static void Adauga_med()
+    static void Adauga_med() // citirea datelor de la tastatura
     {
         Console.WriteLine("Introduceti numele medicamentului:");
         string nume = Console.ReadLine();
@@ -117,7 +117,7 @@ class Farmacie
         }
     }
 
-    static void Afisare_lista()
+    static void Afisare_lista() //afișarea datelor dintr-un vector de obiecte
     {
         if (medicamente.Count == 0)
         {
@@ -133,7 +133,7 @@ class Farmacie
         }
     }
 
-    static void Cauta_med()
+    static void Cauta_med() //căutarea după anumite criterii
     {
         Console.WriteLine("Introduceti numele medicamentului cautat:");
         string nume = Console.ReadLine();
@@ -153,6 +153,8 @@ class Farmacie
 
 class Medicament
 {
+    //Modificați clasele proiectate astfel încât să se folosească proprietăți
+    //auto-implemented în loc de câmpuri private și metodele separate de „get” si „set”.
     public string Nume { get; set; }
     public double Pret { get; set; }
 
