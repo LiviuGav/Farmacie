@@ -4,7 +4,7 @@ using System.Collections.Generic;
 class Farmacie
 {
     static List<Medicament> medicamente = new List<Medicament>(); //salvarea datelor într-un vector de obiecte
-
+    static List<Client> clienti = new List<Client>();
     static void Main(string[] args)
     {
         bool exit = false;
@@ -16,7 +16,10 @@ class Farmacie
             Console.WriteLine("2. Editare/Stergere medicament");
             Console.WriteLine("3. Afisare lista de medicamente");
             Console.WriteLine("4. Cautare medicament");
-            Console.WriteLine("5. Iesire");
+            Console.WriteLine("5. Adaugare client");
+            Console.WriteLine("6. Afisare lista de clienti");
+            Console.WriteLine("7. Cautare client");
+            Console.WriteLine("8. Iesire");
 
             int optiune;
             if (!int.TryParse(Console.ReadLine(), out optiune))
@@ -40,6 +43,15 @@ class Farmacie
                     Cauta_med();
                     break;
                 case 5:
+                    Adauga_client();
+                    break;
+                case 6:
+                    Afisare_client();
+                    break;
+                case 7:
+                    Cauta_client();
+                    break;
+                case 8:
                     exit = true;
                     break;
                 default:
@@ -149,6 +161,52 @@ class Farmacie
             Console.WriteLine("Medicamentul nu a fost gasit.");
         }
     }
+
+    static void Adauga_client()
+    {
+        Console.WriteLine("Introduceti numele clientului:");
+        string nume = Console.ReadLine();
+
+        Console.WriteLine("Introduceti numarul de telefon al clientului:");
+        string telefon = Console.ReadLine();
+
+        Client newClient = new Client(nume, telefon);
+        clienti.Add(newClient);
+        Console.WriteLine("Clientul a fost adaugat cu succes.");
+    }
+
+    static void Afisare_client()
+    {
+        if (clienti.Count == 0)
+        {
+            Console.WriteLine("Nu exista clienti inregistrati.");
+        }
+        else
+        {
+            Console.WriteLine("Lista de clienti:");
+            foreach (var client in clienti)
+            {
+                Console.WriteLine($"Nume: {client.Nume}, Telefon: {client.Telefon}");
+            }
+        }
+    }
+
+    static void Cauta_client()
+    {
+        Console.WriteLine("Introduceti numele clientului cautat:");
+        string nume = Console.ReadLine();
+
+        Client client = clienti.Find(c => c.Nume == nume);
+        if (client != null)
+        {
+            Console.WriteLine("Client gasit:");
+            Console.WriteLine($"Nume: {client.Nume}, Telefon: {client.Telefon}");
+        }
+        else
+        {
+            Console.WriteLine("Clientul nu a fost gasit.");
+        }
+    }
 }
 
 class Medicament
@@ -162,6 +220,18 @@ class Medicament
     {
         Nume = nume;
         Pret = pret;
+    }
+}
+
+class Client
+{
+    public string Nume { get; set; }
+    public string Telefon { get; set; }
+
+    public Client(string nume, string telefon)
+    {
+        Nume = nume;
+        Telefon = telefon;
     }
 }
 
